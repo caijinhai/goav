@@ -1,7 +1,7 @@
 Golang 1.16 work with ffmpeg 4.1.6.   Forked from [here](https://github.com/asticode/goav)
 
 ## run example
-download ffmpep:
+download ffmpeg:
 https://github.com/caijinhai/ffmpeg-bin
 
 

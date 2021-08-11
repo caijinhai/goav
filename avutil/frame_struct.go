@@ -12,16 +12,22 @@ static inline uint8_t ** dataItem(uint8_t * data, int idx)
 import "C"
 import "unsafe"
 
-func (f *Frame) Data() *uint8 {
-	return (*uint8)(unsafe.Pointer((*C.uint8_t)(unsafe.Pointer(&f.data))))
+func (f *Frame) Data() (data [8]*uint8) {
+	for i := range data {
+		data[i] = (*uint8)(f.data[i])
+	}
+	return
 }
 
 func (f *Frame) DataItem(idx int) **uint8 {
 	return (**uint8)(unsafe.Pointer(C.dataItem((*C.uint8_t)(unsafe.Pointer(&f.data)), C.int(idx))))
 }
 
-func (f *Frame) Linesize() int {
-	return int(*(*C.int)(unsafe.Pointer(&f.linesize)))
+func (f *Frame) Linesize() (linesize [8]int32) {
+	for i := range linesize {
+		linesize[i] = int32(f.linesize[i])
+	}
+	return
 }
 
 func (f *Frame) LinesizePtr() *int {
